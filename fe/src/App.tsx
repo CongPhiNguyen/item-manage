@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { Button, Col, Form, Input, InputNumber, message, Modal, Row, Space, Table, PopConfirm, Popconfirm } from 'antd'
+import { Button, Col, Form, Input, InputNumber, message, Modal, Row, Space, Table, Popconfirm } from 'antd'
 import * as itemApi from './api/item.api'
 import { NAME_REGEX, URL_REGEX } from './common/const';
 import { Item } from './common/type';
