@@ -4,8 +4,6 @@ services:
       context: ./be
     ports:
       - "3000:3000"
-    environment:
-      - DATABASE_URL:sqlserver://host.docker.internal:1433;initial catalog=item_management;user=sa;password=YourStrong!Passw0rd;encrypt=false;TrustServerCertificate=true;
 
   frontend:
     build:

@@ -1,5 +1,7 @@
 ## How to run project
 - Install Docker
+- In be folder
+  - Create .env file with content from .env.template
 - Run:
   - ```docker compose up```
 - Run test:

@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 export interface ResponseData<T> {
   status: {
     success: boolean;
-    message?: string; // Nếu bạn muốn có một thông điệp
+    message?: string;
   };
   data: T;
 }
