@@ -1,0 +1,32 @@
+services:
+  backend:
+    build:
+      context: ./be
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL:sqlserver://host.docker.internal:1433;initial catalog=item_management;user=sa;password=YourStrong!Passw0rd;encrypt=false;TrustServerCertificate=true;
+
+  frontend:
+    build:
+      context: ./fe 
+    ports:
+      - "3099:4000" 
+    environment:
+      - VITE_API_ENDPOINT=http://localhost:3000
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong!Passw0rd
+      - MSSQL_PID=Developer
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./db/init.sql:/init.sql
+      - ./db/init_table.sql:/init_table.sql
+    command: >
+      /bin/bash -c "
+      /opt/mssql/bin/sqlservr & sleep 20 &&
+      /opt/mssql-tools18/bin/sqlcmd -S localhost -U SA -P YourStrong!Passw0rd -d master -i /init.sql -C && sleep 20 && /opt/mssql-tools18/bin/sqlcmd -S localhost -U SA -P YourStrong!Passw0rd -d item_management -i /init_table.sql -C &&
+      tail -f /dev/null"

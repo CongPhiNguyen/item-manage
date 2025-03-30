@@ -1,10 +1,16 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { UsersService } from './modules/users/users.service';
+import { PrismaService } from './prisma/prisma.service';
+import { UsersModule } from './modules/users/users.module';
+import { ItemModule } from './modules/items/item.module';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { ResponseFormatInterceptor } from './interceptor/response-format.interceptor';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [UsersModule, ItemModule,],
+  providers: [UsersService, PrismaService, {
+    provide: APP_INTERCEPTOR,
+    useClass: ResponseFormatInterceptor,
+  }],
 })
-export class AppModule {}
+export class AppModule { }

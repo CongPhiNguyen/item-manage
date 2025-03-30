@@ -1,0 +1,51 @@
+## Get list user
+GET http://localhost:3000/users
+
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "phinguyen1",
+  "email": "congphinguyen3112@gmail.com"
+}
+
+###
+# @name getItems
+GET http://localhost:3000/item?page=1&size=19
+
+###
+# @name addItems
+POST http://localhost:3000/item
+Content-Type: application/json
+
+{
+  "name": "Căn hộ cao cấp",
+  "type": "Bất động sản",
+  "category": "Chung cư",
+  "price": 2500000.0,
+  "description": "Căn hộ cao cấp với đầy đủ tiện nghi, vị trí trung tâm.",
+  "imageUrl": "https://example.com/images/canho.jpg",
+  "stock": 5
+}
+
+
+###
+# @name listItem
+GET http://localhost:3000/item?page=10&size=2
+Content-Type: application/json
+
+###
+@itemIdDelete=cm8u315990000niyg4xnpvwdv
+###
+# @name deleteItem
+DELETE http://localhost:3000/item/{{itemIdDelete}}
+Content-Type: application/json
+
+
+###
+@itemIdGet=cm8u315990000niyg4xnpvwdv
+###
+# @name getItem
+GET http://localhost:3000/item/{{itemIdGet}}
+Content-Type: application/json
